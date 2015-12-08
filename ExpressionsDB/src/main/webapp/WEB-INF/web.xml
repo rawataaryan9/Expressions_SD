@@ -33,6 +33,6 @@
 
   <context-param>
   	<param-name>contextConfigLocation</param-name>
-  	<param-value>/WEB-INF/spring-security.xml,/WEB-INF/beanshib.xml</param-value>
+  	<param-value>/WEB-INF/beanshib.xml,/WEB-INF/spring-security.xml</param-value>
   </context-param>  	
 </web-app>

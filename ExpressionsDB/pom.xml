@@ -13,20 +13,14 @@
 			<id>JBoss repository</id>
 			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
 		</repository>
-		<repository>
+		<!-- <repository>
 			<id>server.development.com</id>
 			<name>server.development.com-releases</name>
 			<url>http://server.development.com:8080/libs-release-local</url>
-		</repository>
+		</repository> -->
 	</repositories>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.0.5.RELEASE</version>
-		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -157,12 +151,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.0.1.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>com.snapdeal.sacs</groupId>
-			<artifactId>SnapdealSACSClient</artifactId>
-			<version>3.0-SNAPSHOT</version>
+			<version>3.2.3.RELEASE</version>
 		</dependency>
 	</dependencies>
 
