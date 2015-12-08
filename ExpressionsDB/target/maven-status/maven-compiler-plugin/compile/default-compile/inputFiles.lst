@@ -1,7 +1,6 @@
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/dao/ExpressionDao.java
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/service/ExpressionService.java
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/dao/impl/ExpressionDaoImpl.java
-/home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/config/SecurityConfiguration.java
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/service/impl/ExpressionServiceImpl.java
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/sro/ExpressionSRO.java
 /home/aman/Expressions_SD/ExpressionsDB/src/main/java/com/snapdeal/disconsumer/enums/Actions.java

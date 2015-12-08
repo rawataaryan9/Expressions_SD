@@ -6,6 +6,5 @@ com/snapdeal/disconsumer/dao/ExpressionDao.class
 com/snapdeal/disconsumer/dao/impl/ExpressionDaoImpl.class
 com/snapdeal/disconsumer/controller/ExpressionController.class
 com/snapdeal/disconsumer/service/ExpressionService.class
-com/snapdeal/disconsumer/config/SecurityConfiguration.class
 com/snapdeal/disconsumer/entity/ExpressionDO.class
 com/snapdeal/disconsumer/enums/ExecutionMode.class

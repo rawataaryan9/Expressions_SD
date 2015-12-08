@@ -159,7 +159,7 @@
 
 	<properties>
 		<spring.version>3.2.3.RELEASE</spring.version>
-		<springsecurity.version>4.0.1.RELEASE</springsecurity.version>
+		<springsecurity.version>3.2.3.RELEASE</springsecurity.version>
 	</properties>
 
 	<build>
