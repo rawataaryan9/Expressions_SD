@@ -1,9 +1,13 @@
 package com.snapdeal.disconsumer.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.saml.SAMLEntryPoint;
 import org.springframework.security.saml.metadata.MetadataGeneratorFilter;
 import org.springframework.security.web.FilterChainProxy;
@@ -26,16 +30,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	
 	
-	@Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		
-		ProviderManager pm=(ProviderManager)authenticationManager();
-		pm.setEraseCredentialsAfterAuthentication(false);
-		authenticationManagerBuilder=authenticationManagerBuilder.eraseCredentials(false);
-		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
-		
-		/*auth.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");*/
-    }
+//	@Autowired
+//    public void configureGlobalSecurity(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+//		
+//		ProviderManager pm=(ProviderManager)authenticationManager();
+//		pm.setEraseCredentialsAfterAuthentication(false);
+//		authenticationManagerBuilder=authenticationManagerBuilder.eraseCredentials(false);
+//		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
+//		
+//		authenticationManagerBuilder.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");
+//    }
+	
+	@Bean(name="authenticationManager")
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -43,12 +53,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.httpBasic().authenticationEntryPoint(samlEntryPoint);
 		http.addFilterBefore(metadataGeneratorFilter, ChannelProcessingFilter.class).addFilterAfter(samlFilter, BasicAuthenticationFilter.class);
 		
-		/*http
+		http
         .authorizeRequests()
             .anyRequest().authenticated() 
             .and()
         .formLogin()                      
             .and()
-        .httpBasic();*/
+        .httpBasic();
     }
 }

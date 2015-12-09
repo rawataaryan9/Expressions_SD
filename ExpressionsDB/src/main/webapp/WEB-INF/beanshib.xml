@@ -19,6 +19,8 @@
 	<context:property-placeholder location="classpath:snap.properties" />
 	
    <context:component-scan base-package="com.snapdeal.disconsumer" />
+   <context:component-scan base-package="com.snapdeal.base.transport" />
+   <context:component-scan base-package="com.snapdeal.base.transport.service" />
    
    <bean id="mydao" class="com.snapdeal.disconsumer.dao.impl.ExpressionDaoImpl">
       <property name="htemp" ref="myhibernatetemplate"/>
@@ -58,7 +60,11 @@
    <tx:annotation-driven transaction-manager="transactionManager" />
    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
    	<property name="sessionFactory" ref="mysessionfactory"/>
-   </bean>   
+   </bean> 
+   
+   <bean id="sacsClientService" class="com.snapdeal.sacs.client.services.SACSClientService">
+   		<property name="webServiceBaseUrl" value="http://54.86.136.55:11140"></property>
+   </bean>  
 </beans>
 
 
