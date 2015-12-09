@@ -31,7 +31,7 @@ public class CustomAuthenticationProvider extends SSOSamlAuthenticationProvider{
 			 if (user.getResourcePermissions() != null) {
 			 for (ResourcePermissionSRO resourceRole : user.getResourcePermissions()) {
 			 if (resourceRole != null) {
-			 authorities.add(new SACSGrantedAuthority(resourceRole.getName()));
+				 authorities.add(new SACSGrantedAuthority(resourceRole.getName()));
 			 }
 			 }
 			}

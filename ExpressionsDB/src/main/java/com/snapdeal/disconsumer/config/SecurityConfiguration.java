@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
@@ -30,16 +32,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	
 	
-//	@Autowired
-//    public void configureGlobalSecurity(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//		
-//		ProviderManager pm=(ProviderManager)authenticationManager();
-//		pm.setEraseCredentialsAfterAuthentication(false);
-//		authenticationManagerBuilder=authenticationManagerBuilder.eraseCredentials(false);
-//		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
-//		
-//		authenticationManagerBuilder.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");
-//    }
+	@Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		
+		ProviderManager pm=(ProviderManager)authenticationManager();
+		pm.setEraseCredentialsAfterAuthentication(false);
+		authenticationManagerBuilder=authenticationManagerBuilder.eraseCredentials(false);
+		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
+		
+		authenticationManagerBuilder.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");
+    }
 	
 	@Bean(name="authenticationManager")
 	@Override
@@ -55,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http
         .authorizeRequests()
-            .anyRequest().authenticated() 
+            .anyRequest().permitAll() 
             .and()
         .formLogin()                      
             .and()

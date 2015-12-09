@@ -27,10 +27,10 @@
 					<artifactId>spring-security-config</artifactId>
 					<groupId>org.springframework.security</groupId>
 				</exclusion>
-				<!-- <exclusion>
+				<exclusion>
 					<artifactId>spring-security-web</artifactId>
 					<groupId>org.springframework.security</groupId>
-				</exclusion> -->
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
