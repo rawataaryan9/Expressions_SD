@@ -12,8 +12,7 @@ public interface ExpressionDao {
 	public List<ExpressionDO> getAllExpressions();
 	public int getExpressionsCount();
 	public ExpressionDO getExpressionById(int id);
-	public boolean insertExpression(String referenceName,String namespace,String expression,String createdBy,ExecutionMode executionMode);
 	public boolean deleteExpressionById(int id);
-	public ExpressionDO getExpressionByName(String namespace, String refName);
+	public ExpressionDO getExpressionByName(String refName);
 	
 }

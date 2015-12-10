@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		authenticationManagerBuilder.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");
     }*/
 	
-	/*@Autowired
+/*	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		ProviderManager pm=(ProviderManager)authenticationManager();
 		pm.setEraseCredentialsAfterAuthentication(false);

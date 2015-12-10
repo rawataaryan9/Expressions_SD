@@ -7,14 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.snapdeal.disconsumer.converter.ExpressionDOToSRO;
 import com.snapdeal.disconsumer.dao.ExpressionDao;
-import com.snapdeal.disconsumer.dao.impl.ExpressionDaoImpl;
 import com.snapdeal.disconsumer.entity.ExpressionDO;
 import com.snapdeal.disconsumer.enums.Actions;
-import com.snapdeal.disconsumer.enums.ExecutionMode;
 import com.snapdeal.disconsumer.service.ExpressionService;
 import com.snapdeal.disconsumer.sro.ExpressionSRO;
 
@@ -38,15 +34,15 @@ public class ExpressionServiceImpl implements ExpressionService{
 	//Getting list of all expression.
 	public List<ExpressionSRO> getAllExpressions(){
 		
-		List<ExpressionDO> expDO = expressionDao.getAllExpressions();
+		List<ExpressionDO> listExpDO = expressionDao.getAllExpressions();
 		
-		List<ExpressionSRO> expSRO = null;
-		if (expDO.size()>0){
-			System.out.println(expDO.get(0).getExecutionMode()+" execution mode");
-			expSRO = ExpressionDOToSRO.convertDOToSROList(expDO);
+		List<ExpressionSRO> listExpSRO = new ArrayList<ExpressionSRO>();
+		if (listExpDO.size()>0) {
+			for (ExpressionDO expDO : listExpDO) {
+				listExpSRO.add(expDO.getExpressionSRO());
+			}
 		}
-		
-		return expSRO;
+		return listExpSRO;
 	}
 	
 	//Getting expression by id
@@ -56,19 +52,9 @@ public class ExpressionServiceImpl implements ExpressionService{
 		if(expDO==null){
 			return null;
 		}
-		else{
-			ExpressionSRO expSRO = ExpressionDOToSRO.convertDOToSRO(expDO);
-			return expSRO;
+		else {
+			return expDO.getExpressionSRO();
 		}
-	}
-	
-	//Inserting an expression
-	//@Transactional
-	public boolean insertExpression(String referenceName,String namespace,String expression,String createdBy,ExecutionMode executionMode){
-		
-		return expressionDao.insertExpression(referenceName,namespace, expression, createdBy, executionMode);
-		
-		
 	}
 	
 	// SOft deletion of an expression by updating its field isDeleted to true.
@@ -81,20 +67,19 @@ public class ExpressionServiceImpl implements ExpressionService{
 		return expressionDao.deleteExpressionById(id);
 	}
 
-	public ExpressionSRO getExpressionByName(String name) {
-		String namespace = name.substring(0,name.lastIndexOf('.'));
-		String refName = name.substring(name.lastIndexOf('.')+1,name.length());
-		ExpressionDO exprDO  = expressionDao.getExpressionByName(namespace,refName);
+	public ExpressionSRO getExpressionByName(String refName) {
+		ExpressionDO exprDO  = expressionDao.getExpressionByName(refName);
 		if(exprDO!=null){
-			return ExpressionDOToSRO.convertDOToSRO(exprDO);
+			return exprDO.getExpressionSRO();
 		}
 		return null;
 	}
 
+	@Override
 	public void executeActions(ExpressionSRO expSRO, String action) {
-		// TODO Auto-generated method stub
-		
+
 	}
+
 
 	public List<String> getAllActions() {
 		List<Actions> listactions = Arrays.asList(Actions.values());

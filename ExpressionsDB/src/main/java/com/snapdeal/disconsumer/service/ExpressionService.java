@@ -10,7 +10,6 @@ public interface ExpressionService {
 	
 	public List<ExpressionSRO> getAllExpressions();
 	public ExpressionSRO getExpressionByID(int id);
-	public boolean insertExpression(String referenceName,String namespace,String expression,String createdBy,ExecutionMode executionMode);
 	public boolean deleteExpressionById(int id);
 	public ExpressionSRO getExpressionByName(String name);
 	public void executeActions(ExpressionSRO expSRO, String action);

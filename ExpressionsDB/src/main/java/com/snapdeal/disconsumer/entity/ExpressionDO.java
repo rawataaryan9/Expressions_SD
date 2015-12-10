@@ -1,5 +1,7 @@
 package com.snapdeal.disconsumer.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -18,6 +20,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import com.snapdeal.disconsumer.enums.ExecutionMode;
+import com.snapdeal.disconsumer.sro.ExpressionSRO;
 
 //Entity Expression
 
@@ -31,22 +34,9 @@ public class ExpressionDO {
 		
 	@Column(name = "reference_name",nullable = false)
 	private String referenceName;
-	
-	@Column(name = "namespace",nullable = false)
-	private String namespace;
-	
-	public String getNamespace() {
-		return namespace;
-	}
-	public void setNamespace(String namespace) {
-		this.namespace = namespace;
-	}
+
 	@Column(name = "expression",nullable = false)
 	private String expression;
-	
-	@Column(name = "execution_mode",nullable = false)
-	@Enumerated(EnumType.STRING)
-	private ExecutionMode executionMode;
 	
 	@Column(name = "is_deleted",nullable = false)
 	private boolean isDeleted;
@@ -58,13 +48,6 @@ public class ExpressionDO {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Generated(GenerationTime.INSERT)
 	private Date createdTime;
-	
-	public ExecutionMode getExecutionMode() {
-		return executionMode;
-	}
-	public void setExecutionMode(ExecutionMode executionMode) {
-		this.executionMode = executionMode;
-	}
 	
 	public int getId() {
 		return id;
@@ -107,15 +90,21 @@ public class ExpressionDO {
 	public ExpressionDO(){
 		super();
 	}
-	public ExpressionDO(String referenceName,String namespace,
-			String expression, ExecutionMode executionMode,boolean isDeleted, String createdBy) {
+	public ExpressionDO(String referenceName,
+			String expression, boolean isDeleted, String createdBy) {
 		super();
 		this.referenceName = referenceName;
 		this.expression = expression;
-		this.namespace = namespace;
-		this.executionMode = executionMode;
 		this.isDeleted = isDeleted;
 		this.createdBy = createdBy;
+	}
+
+	public ExpressionSRO getExpressionSRO(){
+		Date createdDate = this.getCreatedTime();
+		DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String createdDateStr = format.format(createdDate);
+		ExpressionSRO expSRO = new ExpressionSRO(this.getId(), this.getReferenceName(), this.getExpression(),  this.isDeleted(), this.getCreatedBy(), createdDateStr);
+		return expSRO;
 	}
 	
 }

@@ -36,24 +36,7 @@ public class ExpressionController {
 	public List<ExpressionSRO> getAllExpressions(){
 		return expressionService.getAllExpressions();
 	}
-	
-	//inserting an expression in database
-	@RequestMapping(value="/insertexpression",method=RequestMethod.POST)
-	@ResponseBody
-	public boolean insertEvent(@RequestParam(value="namespace") String namespace,
-			@RequestParam(value="referenceName") String referenceName,
-			@RequestParam(value="expression") String expression,
-			@RequestParam(value="executionMode") String executionMode,
-			@RequestParam(value="createdBy") String createdby){
-		try{
-			ExecutionMode.valueOf(executionMode);
-		}catch(Exception e){
-			System.out.println("illlegal argument exception");
-			return false;
-		}
-		return expressionService.insertExpression(referenceName,namespace, expression, createdby, ExecutionMode.valueOf(executionMode));	
-	}
-	
+
 	/* Method for getting expressionById */
 	@RequestMapping(value = "/getExpressionById",method = RequestMethod.GET)
 	@ResponseBody
@@ -75,10 +58,7 @@ public class ExpressionController {
 			@RequestParam(value="expression") String expression,
 			@RequestParam(value="action") String action){
 		
-		String namespace = name.substring(name.lastIndexOf('.') + 1);
-		String referenceName = name.substring(0, name.lastIndexOf("."));
-		
-		ExpressionSRO expSRO = new ExpressionSRO(id,namespace,referenceName,expression);
+		ExpressionSRO expSRO = new ExpressionSRO(id,name,expression);
 		
 		expressionService.executeActions(expSRO,action);
 		
