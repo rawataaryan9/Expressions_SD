@@ -30,9 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
 	SAMLEntryPoint samlEntryPoint;
 	
-	
-	
-	@Autowired
+	/*@Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		
 		ProviderManager pm=(ProviderManager)authenticationManager();
@@ -41,7 +39,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
 		
 		authenticationManagerBuilder.inMemoryAuthentication().withUser("User").password("password").roles("ADMIN");
-    }
+    }*/
+	
+	/*@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		ProviderManager pm=(ProviderManager)authenticationManager();
+		pm.setEraseCredentialsAfterAuthentication(false);
+		authenticationManagerBuilder=authenticationManagerBuilder.eraseCredentials(false);
+		authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider);
+	}*/ 
 	
 	@Bean(name="authenticationManager")
 	@Override
