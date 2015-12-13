@@ -77,18 +77,18 @@
 	</build>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.snapdeal</groupId>
 			<artifactId>service</artifactId>
 			<version>${snapdeal.base.version}</version>
-			<!--<scope>compile</scope> -->
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.snapdeal</groupId>
 			<artifactId>ws-client</artifactId>
 			<version>${snapdeal.base.version}</version>
-			<!--<scope>compile</scope> -->
-		</dependency>
+			<scope>compile</scope> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -224,7 +224,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>3.1.1.RELEASE</version>
+			<version>${org.springframework.version}</version>
 		</dependency>
 
 		<dependency>
@@ -234,11 +234,8 @@
 		</dependency>
 
 		<!-- Duplicate Entry -->
-		<!-- <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${org.springframework.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-test</artifactId> 
+			<version>${org.springframework.version}</version> </dependency> -->
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -258,7 +255,32 @@
 					<artifactId>spring-security-web</artifactId>
 					<groupId>org.springframework.security</groupId>
 				</exclusion>
+				<!-- <exclusion>
+					<artifactId>snapdeal.base</artifactId>
+					<groupId>SnapdealBase</groupId>
+				</exclusion> -->
+				<exclusion>
+					<artifactId>spring-jms</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>hibernate-entitymanager</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>ejb3-persistence</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>de.ruedigermoeller</groupId>
+			<artifactId>fst</artifactId>
+			<version>1.27</version>
 		</dependency>
 	</dependencies>
 
